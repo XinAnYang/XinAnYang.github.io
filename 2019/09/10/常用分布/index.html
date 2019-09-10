@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="离散分布,连续分布,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="常用离散分布 二项分布\(\ X\sim b(n,p)\ \)分布列$$P(X=k)=C_n^k p^k (1-p)^{n-k},k=0,1,\cdots,n$$ 期望和方差$$E(X)=np$$$$Var(X)=E(X^2)-E^2(X)=np(1-p)$$">
+<meta name="keywords" content="离散分布,连续分布">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用分布">
+<meta property="og:url" content="http://yangxinan.work/2019/09/10/常用分布/index.html">
+<meta property="og:site_name" content="漾~心安的零维世界">
+<meta property="og:description" content="常用离散分布 二项分布\(\ X\sim b(n,p)\ \)分布列$$P(X=k)=C_n^k p^k (1-p)^{n-k},k=0,1,\cdots,n$$ 期望和方差$$E(X)=np$$$$Var(X)=E(X^2)-E^2(X)=np(1-p)$$">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-09-10T03:11:13.441Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用分布">
+<meta name="twitter:description" content="常用离散分布 二项分布\(\ X\sim b(n,p)\ \)分布列$$P(X=k)=C_n^k p^k (1-p)^{n-k},k=0,1,\cdots,n$$ 期望和方差$$E(X)=np$$$$Var(X)=E(X^2)-E^2(X)=np(1-p)$$">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yangxinan.work/2019/09/10/常用分布/">
+
+
+
+
+
+  <title>常用分布 | 漾~心安的零维世界</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">漾~心安的零维世界</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yangxinan.work/2019/09/10/常用分布/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="漾~心安">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="漾~心安的零维世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">常用分布</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-10T10:35:03+08:00">
+                2019-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/10/常用分布/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/10/常用分布/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="常用离散分布"><a href="#常用离散分布" class="headerlink" title="常用离散分布"></a>常用离散分布</h2><hr>
+<h3 id="二项分布-X-sim-b-n-p"><a href="#二项分布-X-sim-b-n-p" class="headerlink" title="二项分布\(\ X\sim b(n,p)\ \)"></a>二项分布\(\ X\sim b(n,p)\ \)</h3><h4 id="分布列"><a href="#分布列" class="headerlink" title="分布列"></a>分布列</h4><p>$$P(X=k)=C_n^k p^k (1-p)^{n-k},k=0,1,\cdots,n$$</p>
+<h4 id="期望和方差"><a href="#期望和方差" class="headerlink" title="期望和方差"></a>期望和方差</h4><p>$$E(X)=np$$<br>$$Var(X)=E(X^2)-E^2(X)=np(1-p)$$</p>
+<a id="more"></a>
+<hr>
+<h3 id="泊松分布-X-sim-P-lambda"><a href="#泊松分布-X-sim-P-lambda" class="headerlink" title="泊松分布\(\ X\sim P(\lambda)\ \)"></a>泊松分布\(\ X\sim P(\lambda)\ \)</h3><h4 id="分布列-1"><a href="#分布列-1" class="headerlink" title="分布列"></a>分布列</h4><p>$$P(X=k)=\frac{\lambda^k} {k!}e^{-\lambda},k=0,1,\cdots,$$</p>
+<h4 id="期望和方差-1"><a href="#期望和方差-1" class="headerlink" title="期望和方差"></a>期望和方差</h4><p>$$E(X)=\lambda$$<br>$$Var(X)=\lambda$$</p>
+<hr>
+<h3 id="超几何分布-X-sim-h-n-N-M"><a href="#超几何分布-X-sim-h-n-N-M" class="headerlink" title="超几何分布\(\ X\sim h(n,N,M)\ \)"></a>超几何分布\(\ X\sim h(n,N,M)\ \)</h3><h4 id="分布列-2"><a href="#分布列-2" class="headerlink" title="分布列"></a>分布列</h4><p>$$P(X=k)=\frac{C_M^k C_{N-M}^{n-k}} {C_N^n},k=0,1,\cdots,r$$</p>
+<h4 id="期望和方差-2"><a href="#期望和方差-2" class="headerlink" title="期望和方差"></a>期望和方差</h4><p>$$E(X)=n\frac{M} {N}$$<br>$$Var(X)=\frac{nM(N-M)(N-n)} {N^2(N-1)}$$</p>
+<hr>
+<h3 id="几何分布-X-sim-Ge-p"><a href="#几何分布-X-sim-Ge-p" class="headerlink" title="几何分布\(\ X\sim Ge(p)\ \)"></a>几何分布\(\ X\sim Ge(p)\ \)</h3><h4 id="分布列-3"><a href="#分布列-3" class="headerlink" title="分布列"></a>分布列</h4><p>$$P(X=k)=(1-p)^{k-1}p$$</p>
+<h4 id="期望和方差-3"><a href="#期望和方差-3" class="headerlink" title="期望和方差"></a>期望和方差</h4><p>$$E(X)=\frac{1} {p}$$<br>$$Var(X)=\frac{1-p} {p^2}$$</p>
+<hr>
+<h3 id="负二项分布-X-sim-Nb-r-p"><a href="#负二项分布-X-sim-Nb-r-p" class="headerlink" title="负二项分布\(\ X\sim Nb(r,p)\ \)"></a>负二项分布\(\ X\sim Nb(r,p)\ \)</h3><h4 id="分布列-4"><a href="#分布列-4" class="headerlink" title="分布列"></a>分布列</h4><p>$$P(X=k)=C_{k-1}^{r-1}p^r(1-p)^{k-r}$$</p>
+<h4 id="期望和方差-4"><a href="#期望和方差-4" class="headerlink" title="期望和方差"></a>期望和方差</h4><p>$$E(X)=\frac{r} {p}$$<br>$$Var(X)=r\frac{1-p} {p^2}$$</p>
+<hr>
+<h2 id="常用连续分布"><a href="#常用连续分布" class="headerlink" title="常用连续分布"></a>常用连续分布</h2><h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><h3 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a>均匀分布</h3><h3 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h3><h3 id="伽玛分布"><a href="#伽玛分布" class="headerlink" title="伽玛分布"></a>伽玛分布</h3><h3 id="贝塔分布"><a href="#贝塔分布" class="headerlink" title="贝塔分布"></a>贝塔分布</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/离散分布/" rel="tag"># 离散分布</a>
+          
+            <a href="/tags/连续分布/" rel="tag"># 连续分布</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/10/C语言小笔记/" rel="next" title="C语言小笔记">
+                <i class="fa fa-chevron-left"></i> C语言小笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/10/数学公式记录/" rel="prev" title="数学公式记录">
+                数学公式记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2019/09/10/常用分布/" data-title="常用分布" data-url="http://yangxinan.work/2019/09/10/常用分布/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">漾~心安</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:13772582975@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用离散分布"><span class="nav-number">1.</span> <span class="nav-text">常用离散分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二项分布-X-sim-b-n-p"><span class="nav-number">1.1.</span> <span class="nav-text">二项分布\(\ X\sim b(n,p)\ \)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分布列"><span class="nav-number">1.1.1.</span> <span class="nav-text">分布列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#期望和方差"><span class="nav-number">1.1.2.</span> <span class="nav-text">期望和方差</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泊松分布-X-sim-P-lambda"><span class="nav-number">1.2.</span> <span class="nav-text">泊松分布\(\ X\sim P(\lambda)\ \)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分布列-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">分布列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#期望和方差-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">期望和方差</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超几何分布-X-sim-h-n-N-M"><span class="nav-number">1.3.</span> <span class="nav-text">超几何分布\(\ X\sim h(n,N,M)\ \)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分布列-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">分布列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#期望和方差-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">期望和方差</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几何分布-X-sim-Ge-p"><span class="nav-number">1.4.</span> <span class="nav-text">几何分布\(\ X\sim Ge(p)\ \)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分布列-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">分布列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#期望和方差-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">期望和方差</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负二项分布-X-sim-Nb-r-p"><span class="nav-number">1.5.</span> <span class="nav-text">负二项分布\(\ X\sim Nb(r,p)\ \)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分布列-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">分布列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#期望和方差-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">期望和方差</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用连续分布"><span class="nav-number">2.</span> <span class="nav-text">常用连续分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正态分布"><span class="nav-number">2.1.</span> <span class="nav-text">正态分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#均匀分布"><span class="nav-number">2.2.</span> <span class="nav-text">均匀分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指数分布"><span class="nav-number">2.3.</span> <span class="nav-text">指数分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伽玛分布"><span class="nav-number">2.4.</span> <span class="nav-text">伽玛分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贝塔分布"><span class="nav-number">2.5.</span> <span class="nav-text">贝塔分布</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">漾~心安</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"流光"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

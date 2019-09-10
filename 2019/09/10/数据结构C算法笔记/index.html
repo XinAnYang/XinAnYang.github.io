@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C,算法,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="排序 所用到的数据类型定义12345678910111213#define MAXSIZE     20      //一个用作示例的小顺序表的最大长度typedef int     KeyType;     //定义关键字类型为整数类型typedef char*  InfoType;typedef struct&amp;#123;    KeyType     key;        //关键字项">
+<meta name="keywords" content="C,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构C算法笔记">
+<meta property="og:url" content="http://yangxinan.work/2019/09/10/数据结构C算法笔记/index.html">
+<meta property="og:site_name" content="漾~心安的零维世界">
+<meta property="og:description" content="排序 所用到的数据类型定义12345678910111213#define MAXSIZE     20      //一个用作示例的小顺序表的最大长度typedef int     KeyType;     //定义关键字类型为整数类型typedef char*  InfoType;typedef struct&amp;#123;    KeyType     key;        //关键字项">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-09-10T03:12:22.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构C算法笔记">
+<meta name="twitter:description" content="排序 所用到的数据类型定义12345678910111213#define MAXSIZE     20      //一个用作示例的小顺序表的最大长度typedef int     KeyType;     //定义关键字类型为整数类型typedef char*  InfoType;typedef struct&amp;#123;    KeyType     key;        //关键字项">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yangxinan.work/2019/09/10/数据结构C算法笔记/">
+
+
+
+
+
+  <title>数据结构C算法笔记 | 漾~心安的零维世界</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">漾~心安的零维世界</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yangxinan.work/2019/09/10/数据结构C算法笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="漾~心安">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="漾~心安的零维世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构C算法笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-10T10:35:03+08:00">
+                2019-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/程序/" itemprop="url" rel="index">
+                    <span itemprop="name">程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/10/数据结构C算法笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/10/数据结构C算法笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><hr>
+<h3 id="所用到的数据类型定义"><a href="#所用到的数据类型定义" class="headerlink" title="所用到的数据类型定义"></a>所用到的数据类型定义</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE     20      <span class="comment">//一个用作示例的小顺序表的最大长度</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span>     KeyType;     <span class="comment">//定义关键字类型为整数类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span>*  InfoType;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    KeyType     key;        <span class="comment">//关键字项</span></span><br><span class="line">    InfoType    otherinfo;  <span class="comment">//其他数据项</span></span><br><span class="line">&#125;RedType;                   <span class="comment">//记录类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    RedType     r[MAXSIZE+<span class="number">1</span>];   <span class="comment">//r[0]闲置或用作哨兵单元</span></span><br><span class="line">    <span class="keyword">int</span>         length;     <span class="comment">//顺序表长度</span></span><br><span class="line">&#125;SqList;                    <span class="comment">//顺序表类型</span></span><br><span class="line"><span class="keyword">typedef</span> SqList HeapType;	<span class="comment">//堆采用顺序表存储表示</span></span><br><span class="line"><span class="keyword">typedef</span> RedType RcdType;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+<hr>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>又称”缩小增量排序”(Diminishing Increment Sort)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShellInsert</span><span class="params">(SqList &amp;L, <span class="keyword">int</span> dk)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//对顺序表进行一趟希尔排序</span></span><br><span class="line">	<span class="comment">//dk 前后记录位置的增量</span></span><br><span class="line">	<span class="comment">//r[0]为暂存单元,当j&lt;=0时,插入位置已找到</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = dk + <span class="number">1</span>; i &lt;= L.length; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (LT(L.r[i].key, L.r[i - dk].key)) &#123;           <span class="comment">//需将L.r[i]插入有序增量表</span></span><br><span class="line">			L.r[<span class="number">0</span>] = L.r[i];                      <span class="comment">//暂存在L.r[0]</span></span><br><span class="line">			<span class="keyword">int</span> j;</span><br><span class="line">			<span class="keyword">for</span> (j = i - dk; j &gt; <span class="number">0</span> &amp;&amp; LT(L.r[<span class="number">0</span>].key, L.r[j].key); j -= dk)</span><br><span class="line">				L.r[j + dk] = L.r[j];               <span class="comment">//记录后移,查找插入位置</span></span><br><span class="line">			L.r[j + dk] = L.r[<span class="number">0</span>];                   <span class="comment">//插入</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="comment">//ShellInsert</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShellSort</span><span class="params">(SqList &amp;L, <span class="keyword">int</span> dlta[], <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//按增量序列dlta[0..t-1]对顺序表L作希尔排序</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; t; k++) &#123;</span><br><span class="line">		ShellInsert(L, dlta[k]);     <span class="comment">//一趟增量为dlta[k]的插入排序</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="comment">//ShellSort</span></span><br></pre></td></tr></table></figure>
+
+<p>希尔排序的分析是一个复杂的问题,因为他的时间是所取“增量”序列的函数,到目前(2013)为止尚未有人求得一种最好的增量序列,但大量的研究以得出一些局部的结论.<br>有人指出：当增量序列为\(dlta[k]=2^{t-k+1}-1\)时,时间复杂度为\(O(n^{3/2})\),其中\(t\)为排序趟数,\(1\leq k\leq t\leq\lfloor log_2(n+1)\rfloor\).<br>还有人在大量的实验基础上推出：当\(n\)在某个特定范围内,希尔排序所需的比较和移动次数约为\(n^{1.3}\),当\(n\to\infty\)时,可减少到\(n(log_2 n)^{2}\).</p>
+<hr>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>递归形式的快速排序算法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">    <span class="comment">//交换顺序表L中子表r[low..high]的记录，枢轴记录到位，并返回其所在位置，</span></span><br><span class="line">    <span class="comment">//此时在它之前（后）的记录都不大于（不小于）它。</span></span><br><span class="line">    L.r[<span class="number">0</span>]=L.r[low];                <span class="comment">//用子表的第一个作枢轴记录</span></span><br><span class="line">    KeyType pivotkey=L.r[low].key;  <span class="comment">//枢轴记录关键字</span></span><br><span class="line">    <span class="keyword">while</span>(low&lt; high)&#123;                <span class="comment">//从表的两端交替向中间扫描</span></span><br><span class="line">        <span class="keyword">while</span>(low&lt; high&amp;&amp;L.r[high].key&gt;=pivotkey) high--;</span><br><span class="line">        L.r[low]=L.r[high];         <span class="comment">//将比枢轴记录小的记录移到低端</span></span><br><span class="line">        <span class="keyword">while</span>(low&lt; high&amp;&amp;L.r[low].key&lt;=pivotkey) low++;</span><br><span class="line">        L.r[high]=L.r[low];         <span class="comment">//将比枢轴记录大的记录移到高端</span></span><br><span class="line">    &#125;</span><br><span class="line">    L.r[low]=L.r[<span class="number">0</span>];                <span class="comment">//枢轴记录到位</span></span><br><span class="line">    <span class="keyword">return</span> low;                     <span class="comment">//返回枢轴位置</span></span><br><span class="line">&#125;<span class="comment">//Partition</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QSort</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">    <span class="comment">//对顺序表L中的子序列L.r[low..high]作快速排序</span></span><br><span class="line">    <span class="keyword">if</span>(low &lt; high)&#123;</span><br><span class="line">        KeyType pivotloc=Partition(L,low,high); <span class="comment">//将L.r[low..high]一分为二</span></span><br><span class="line">        QSort(L,low,pivotloc<span class="number">-1</span>);    <span class="comment">//对低子表递归排序，pivotloc时枢轴位置</span></span><br><span class="line">        QSort(L,pivotloc+<span class="number">1</span>,high);   <span class="comment">//对高子表递归排序</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//QSort</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(SqList &amp;L)</span></span>&#123;</span><br><span class="line">    <span class="comment">//对顺序表L作快速排序</span></span><br><span class="line">    QSort(L,<span class="number">1</span>,L.length);</span><br><span class="line">&#125;<span class="comment">//QuickSort</span></span><br></pre></td></tr></table></figure>
+
+<p>快速排序的平均时间为\(T_{avg}(n)=kn\ln n\),其中\(n\)为待排序序列中记录的个数，\(k\)为某个常数，经验证明，在所有同数量级的此类（先进的）排序方法中，快速排序的常数因子\(k\)最小。因此，     <strong>就平均时间而言，快速排序时目前被认为最好的一种内部排序方法</strong></p>
+<hr>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>堆排序（Heap Sort）算法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapAdjust</span><span class="params">(HeapType &amp;H, <span class="keyword">int</span> s, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//已知H.r[s..m]中记录关键字除H.r[s].key之外均满足堆的定义</span></span><br><span class="line">	<span class="comment">//本函数调整H.r[s]的关键字，使H.r[s..m]成为一个大顶堆（对其中记录的关键字而言）</span></span><br><span class="line">	RedType rc = H.r[s];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span> * s; j &lt;= m; j *= <span class="number">2</span>) &#123;					<span class="comment">//延key较大的孩子节点向下筛选</span></span><br><span class="line">		<span class="keyword">if</span> (j &lt; m&amp;&amp;LT(H.r[j].key, H.r[j + <span class="number">1</span>].key)) ++j;		<span class="comment">//j为key较大的记录的下标</span></span><br><span class="line">		<span class="keyword">if</span> (!LT(rc.key, H.r[j].key)) <span class="keyword">break</span>;					<span class="comment">//rc应插入在位置s上</span></span><br><span class="line">		H.r[s] = H.r[j];</span><br><span class="line">		s = j;</span><br><span class="line">	&#125;</span><br><span class="line">	H.r[s] = rc;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">(HeapType &amp;H)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//对顺序表H进行堆排序</span></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = H.length / <span class="number">2</span>; i &gt; <span class="number">0</span>; i++)		<span class="comment">//把H.r[1..H.length]建成大顶堆</span></span><br><span class="line">		HeapAdjust(H, i, H.length);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = H.length; i &gt; <span class="number">1</span>; --i) &#123;</span><br><span class="line">		RedType r = H.r[<span class="number">1</span>];			<span class="comment">//将堆顶记录和当前未经排序子序列H.r[1..i]中最后一个记录互相交换</span></span><br><span class="line">		H.r[<span class="number">1</span>]=H.r[i];</span><br><span class="line">		H.r[i] = r;</span><br><span class="line">		HeapAdjust(H, <span class="number">1</span>, i - <span class="number">1</span>);	<span class="comment">//将H.r[1..i-1]重新调整为大顶堆</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>堆排序方法对记录数较少的文件并不值得提倡，因为其运行时间主要耗费在建初始堆和调整建新堆时进行的反复“筛选”上。<br>对深度为 \(\ k\ \)的堆，筛选算法中进行的关键字比较次数至多为\(\ 2(k-1)\ \)次，则在建含\(\ n\ \)个元素、深度为\(\ h\ \)的堆时，总共进行的关键字比较次数不超过\(\ 4n\ \).又\(\ n\ \)个节点的完全二叉树的深度为\(\ \lfloor\log_2 n\rfloor +1\ \),则调整用新堆时调用HeapAdjust过程\(\ n-1\ \)次，总共进行的比较次数不超过下式之值：<br>$$2(\lfloor\log_2(n-1)\rfloor+\lfloor\log_2(n-2)\rfloor+\cdots+\log_2 2)&lt;2n(\lfloor\log_2 n\rfloor)$$<br>此外，堆排序在最坏的情况下，其时间复杂度也为\(\ O(n\log n)\ \),相对快速排序来说，这是堆排序的最大优点。</p>
+<hr>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>2-路归并排序算法,无论是顺序存储结构还是链表存储结构，都可在\(\ O(m+m)\ \)（假设两个有序表的长度分别为\(\ m\ \)和\(\ n\ \)）的时间量级上实现。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(RcdType SR[], RcdType TR[], <span class="keyword">int</span> i, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//将有序的SR[i..m]和SR[m+1..n]归并为有序的TR[i..n]</span></span><br><span class="line">	<span class="keyword">int</span> j;</span><br><span class="line">	<span class="keyword">for</span> (j = m + <span class="number">1</span>, k = i; i &lt;= m &amp;&amp; j &lt;= n; ++k) &#123;</span><br><span class="line">		<span class="comment">//将SR中的记录由小到大的并入TR</span></span><br><span class="line">		<span class="keyword">if</span> (LQ(SR[i].key, SR[j].key)) TR[k] = SR[i++];</span><br><span class="line">		<span class="keyword">else</span> TR[k] = SR[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (i &lt;= m)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> p = i, q = k; p &lt;= m; p++, q++) TR[q] = SR[p];	<span class="comment">//将剩余的SR[i..m]复制到TR</span></span><br><span class="line">	<span class="keyword">if</span> (j &lt;= n)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> p = j, q = k; p &lt;= n; p++, q++) TR[q] = SR[p];	<span class="comment">//将剩余的SR[j..n]复制到TR</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MSort</span><span class="params">(RcdType SR[], RcdType TR1[], <span class="keyword">int</span> s, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//将SR[s..t]归并排序为TR1[s..t]</span></span><br><span class="line">	<span class="keyword">if</span> (s == t)TR1[s] = SR[s];</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		RcdType *TR2;</span><br><span class="line">		<span class="keyword">int</span> m = (s + t) / <span class="number">2</span>;			<span class="comment">//将SR[s..t]平分为SR[s..m]和SR[m+1..t]</span></span><br><span class="line">		MSort(SR, TR2, s, m);			<span class="comment">//递归地将SR[s..m]归并为有序的TR2[s..m]</span></span><br><span class="line">		MSort(SR, TR2, m + <span class="number">1</span>, t);		<span class="comment">//递归地将SR[m+1..t]归并为有序的TR2[m+1..t]</span></span><br><span class="line">		Merge(TR2, TR1, s, m, t);		<span class="comment">//将TR2[s..m]和TR2[m+1..t]归并到TR1[s..t]</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(SqList &amp;L)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//对顺序表L作归并排序</span></span><br><span class="line">	MSort(L.r, L.r, <span class="number">1</span>, L.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>与快速排序和堆排序相比，归并排序的最大特点是，它是一种稳定的排序方法。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/10/数学公式记录/" rel="next" title="数学公式记录">
+                <i class="fa fa-chevron-left"></i> 数学公式记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/10/泰勒合辑/" rel="prev" title="泰勒合辑">
+                泰勒合辑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2019/09/10/数据结构C算法笔记/" data-title="数据结构C算法笔记" data-url="http://yangxinan.work/2019/09/10/数据结构C算法笔记/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">漾~心安</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:13772582975@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">1.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#所用到的数据类型定义"><span class="nav-number">1.1.</span> <span class="nav-text">所用到的数据类型定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#希尔排序"><span class="nav-number">1.2.</span> <span class="nav-text">希尔排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">1.3.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆排序"><span class="nav-number">1.4.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-number">1.5.</span> <span class="nav-text">归并排序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">漾~心安</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"流光"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
